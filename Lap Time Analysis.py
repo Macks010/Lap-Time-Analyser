@@ -5,7 +5,7 @@ session = ff1.get_session(2026, "Singapore", "R")
 session.load()
 ant_laps = session.laps.pick_driver("ANT")
 
-caseInfo = ["LapTime", "Compound", "PitInTime", "PitOutTime"]
+caseInfo = ["LapNumber", "LapTime", "Compound", "PitInTime", "PitOutTime"]
 print("ANT")
 # sort from fastest to slowest
 ant_laps = ant_laps.sort_values("LapTime")
