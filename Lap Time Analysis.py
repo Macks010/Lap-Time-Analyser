@@ -3,7 +3,7 @@ import fastf1 as ff1
 
 # Take User Input
 Race = input("Enter Circuit Name (i.e Singapore): ")
-Year = int(input("Enter Year of Race: "))
+Year = int(input("Enter Year of Race (2018 or Later): "))
 Session = input("Enter Session Type (i.e R, S, Q): ")
 Driver = input("Input Driver Name (i.e ANT): ")
 
