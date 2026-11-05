@@ -1,5 +1,7 @@
 # Pull pit stop data
 import fastf1 as ff1
+import matplotlib.pyplot as plt
+import numpy as np
 
 # Take User Input
 Race = input("Enter Circuit Name (i.e Singapore): ")
@@ -13,7 +15,17 @@ session.load()
 ant_laps = session.laps.pick_driver(Driver)
 caseInfo = ["LapTime", "Compound", "PitInTime", "PitOutTime"]
 print(Driver)
-ant_laps = ant_laps.sort_values("LapTime")
 
 # sort from fastest to slowest and print
-print(ant_laps[caseInfo].to_string(index=False))
+print(ant_laps.sort_values("LapTime")[caseInfo].to_string(index=False))
+
+# Plot lap time against lap number in race order.
+plot_laps = ant_laps.dropna(subset=["LapNumber", "LapTime"]).sort_values("LapNumber")
+lap_times_seconds = plot_laps["LapTime"].dt.total_seconds()
+plt.plot(plot_laps["LapNumber"], lap_times_seconds, marker="o")
+plt.xlabel("Lap Number")
+plt.ylabel("Lap Time (seconds)")
+plt.title(f"{Driver} Lap Times - {Year} {Race}")
+plt.grid(True)
+plt.tight_layout()
+plt.show()
